@@ -290,7 +290,7 @@ function getLine() {
     ArrowRight:".b58",
 }
 
-import i18Obj from './src/translate.js';
+import i18Obj from './translate.js';
 const objectData = document.querySelectorAll('[data-i18]');
 
 let lang=['en','ru']
