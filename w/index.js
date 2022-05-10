@@ -504,22 +504,17 @@ document.addEventListener('click', function(){
    DispText.focus()
 })
 
-function moveToLeftCursor(event){
-    if(event.target.classList[1]==='b56') {
+function moveToLeftCursor(){
         DispText.selectionStart=DispText.selectionStart-1
         DispText.selectionEnd=DispText.selectionEnd-1
-    }
 }
-document.addEventListener('click', moveToLeftCursor)
+document.querySelector(".b56").addEventListener('click', moveToLeftCursor)
 
-function moveToRightCursor(event){
-    if(event.target.classList[1]==='b58') {
+function moveToRightCursor(){
         DispText.selectionStart = DispText.selectionStart +1
         DispText.selectionEnd = DispText.selectionStart
-        
-    }
 }
-document.addEventListener('click', moveToRightCursor)
+document.querySelector(".b58").addEventListener('click', moveToRightCursor)
 
 
 function deleteRenge(){
@@ -535,19 +530,17 @@ function BackspaceRenge(){
 }
 document.querySelector(".b113").addEventListener('click', BackspaceRenge)
 
-function SpaseRenge(event){
-    if(event.target.classList[1]==='b53') {
+function SpaseRenge(){
         DispText.setRangeText(" ", DispText.selectionStart, DispText.selectionEnd, "end")
-    }
 }
-document.addEventListener('click', SpaseRenge)
+document.querySelector(".b53").addEventListener('click', SpaseRenge)
 
-function TabRenge(event){
-  if(event.target.classList[1]==='b20') {
+function TabRenge(){
+  
       DispText.setRangeText("      ", DispText.selectionStart, DispText.selectionEnd, "end")
-  }
+  
 }
-document.addEventListener('click', TabRenge)
+document.querySelector(".b20").addEventListener('click', TabRenge)
 
 
 function TabRengeKeyboard (event){
@@ -578,32 +571,23 @@ function ArrowDownboard (event){
 document.addEventListener('keydown', ArrowDownboard)
 
 
-function ArrowDownboardmouse(event){
-  if(event.target.classList[1]==='b57') {
+function ArrowDownboardmouse(){
       DispText.setRangeText('\u25BC', DispText.selectionStart, DispText.selectionEnd, "end")
-  }
 }
-document.addEventListener('click', ArrowDownboardmouse)
+document.querySelector(".b57").addEventListener('click', ArrowDownboardmouse)
 
-function ArrowUPboardmouse(event){
-  if(event.target.classList[1]==='b412') {
+function ArrowUPboardmouse(){
+  
       DispText.setRangeText('\u25B2', DispText.selectionStart, DispText.selectionEnd, "end")
-  }
+  
 }
-document.addEventListener('click', ArrowUPboardmouse)
+document.querySelector(".b412").addEventListener('click', ArrowUPboardmouse)
 
-
-
-
-
-function EnterRenge(event){
-    if(event.target.classList[1]==='b312') {
+function EnterRenge(){
+  console.log(2)
         DispText.setRangeText('\n', DispText.selectionStart, DispText.selectionEnd, "end")
-    }
 }
-document.addEventListener('click', EnterRenge)
-
-
+document.querySelector(".b312").addEventListener('click', EnterRenge)
 
 function setLocalStorage() {
     localStorage.setItem('lang', langCur);
