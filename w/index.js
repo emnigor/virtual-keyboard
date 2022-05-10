@@ -4,6 +4,7 @@ document.body.append(divWraper);
 
 let Disp = document.createElement('textarea');
 Disp.className = "disp";
+
 divWraper.append(Disp);
 let DispText=document.querySelector(".disp")
 DispText.placeholder= "RSS";
@@ -199,6 +200,7 @@ function getLine() {
   let CapsCur=whatCapslock[0]
 
   document.addEventListener('keyup', function (event) {  
+    console.log(document.querySelector(arrCode[event.code]).classList[1]==='b30')
     if(document.querySelector(arrCode[event.code]).classList[1]==='b30'){
         if (CapsCur===whatCapslock[0]) {
             CapsCur=whatCapslock[1]
@@ -393,8 +395,10 @@ function switcherLang() {
 
 
   document.addEventListener('keyup', function(event) {
-        document.querySelector(arrCode[event.code]).classList.remove('rrr')
-        DispText.focus()
+    if (document.querySelector(arrCode[event.code]).classList.contains('rrr')) {
+      document.querySelector(arrCode[event.code]).classList.remove('rrr')
+      DispText.focus()
+    }   
   });
 
   document.addEventListener('mousedown', function(event) {
@@ -500,80 +504,43 @@ document.addEventListener('click', function(){
    DispText.focus()
 })
 
-function moveToLeftCursor(event){
-    if(event.target.classList[1]==='b56') {
+function moveToLeftCursor(){
         DispText.selectionStart=DispText.selectionStart-1
         DispText.selectionEnd=DispText.selectionEnd-1
-    }
 }
-document.addEventListener('click', moveToLeftCursor)
+document.querySelector(".b56").addEventListener('click', moveToLeftCursor)
 
-function moveToRightCursor(event){
-    if(event.target.classList[1]==='b58') {
+function moveToRightCursor(){
         DispText.selectionStart = DispText.selectionStart +1
         DispText.selectionEnd = DispText.selectionStart
-        console.log(DispText)
-    }
 }
-document.addEventListener('click', moveToRightCursor)
+document.querySelector(".b58").addEventListener('click', moveToRightCursor)
 
 
-function deleteRenge(event){
-    if(event.target.classList[1]==='b214') {
-        if (DispText.selectionEnd!==DispText.selectionStart) {
-            document.getSelection().deleteFromDocument()
-           } else {
+function deleteRenge(){
             DispText.selectionEnd=DispText.selectionEnd+1
-            document.getSelection().deleteFromDocument()
-           }
-    }
+            Disp.setRangeText('', DispText.selectionStart, DispText.selectionEnd, "end")
 }
-document.addEventListener('click', deleteRenge)
+document.querySelector(".b214").addEventListener('click', deleteRenge)
 
 
-
-document.addEventListener('mousedown', function(event) {
-  if (event.target.classList.contains('but')) {
-      if (event.target.classList[1]==='b113') {
-          event.target.classList.add('activebspc')
-      }
-  }
-});
-
-document.addEventListener('mouseup', function(event) {
-  if (event.target.classList.contains('but')) {
-      if (event.target.classList[1]==='b113') {
-          event.target.classList.remove('activebspc')
-      }
-  }
-});
-
-
-function BackspaceRenge(event){
-    if(event.target.classList[1]==='b113') {
-        if (DispText.selectionEnd!==DispText.selectionStart) {
-          document.getSelection().deleteFromDocument()
-         } else {
-          DispText.selectionStart=DispText.selectionStart-1
-          document.getSelection().deleteFromDocument()
-         }
-      }    
+function BackspaceRenge(){
+          Disp.selectionStart=Disp.selectionStart-1
+          Disp.setRangeText('', DispText.selectionStart, DispText.selectionEnd, "end")       
 }
-document.addEventListener('click', BackspaceRenge)
+document.querySelector(".b113").addEventListener('click', BackspaceRenge)
 
-function SpaseRenge(event){
-    if(event.target.classList[1]==='b53') {
+function SpaseRenge(){
         DispText.setRangeText(" ", DispText.selectionStart, DispText.selectionEnd, "end")
-    }
 }
-document.addEventListener('click', SpaseRenge)
+document.querySelector(".b53").addEventListener('click', SpaseRenge)
 
-function TabRenge(event){
-  if(event.target.classList[1]==='b20') {
+function TabRenge(){
+  
       DispText.setRangeText("      ", DispText.selectionStart, DispText.selectionEnd, "end")
-  }
+  
 }
-document.addEventListener('click', TabRenge)
+document.querySelector(".b20").addEventListener('click', TabRenge)
 
 
 function TabRengeKeyboard (event){
@@ -604,14 +571,23 @@ function ArrowDownboard (event){
 document.addEventListener('keydown', ArrowDownboard)
 
 
-function EnterRenge(event){
-    if(event.target.classList[1]==='b312') {
-        DispText.setRangeText('\n', DispText.selectionStart, DispText.selectionEnd, "end")
-    }
+function ArrowDownboardmouse(){
+      DispText.setRangeText('\u25BC', DispText.selectionStart, DispText.selectionEnd, "end")
 }
-document.addEventListener('click', EnterRenge)
+document.querySelector(".b57").addEventListener('click', ArrowDownboardmouse)
 
+function ArrowUPboardmouse(){
+  
+      DispText.setRangeText('\u25B2', DispText.selectionStart, DispText.selectionEnd, "end")
+  
+}
+document.querySelector(".b412").addEventListener('click', ArrowUPboardmouse)
 
+function EnterRenge(){
+  console.log(2)
+        DispText.setRangeText('\n', DispText.selectionStart, DispText.selectionEnd, "end")
+}
+document.querySelector(".b312").addEventListener('click', EnterRenge)
 
 function setLocalStorage() {
     localStorage.setItem('lang', langCur);
